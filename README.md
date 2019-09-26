@@ -1,4 +1,4 @@
-TACK & QUEUE
+# STACK & QUEUE
 
 ### Stack
 A linear data structure in which elements can only be inserted and removed from the top. It follows the LIFO or FILO principle. There are three main operations performed in the stack:

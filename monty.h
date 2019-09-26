@@ -36,26 +36,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * instruction_t opcode_op - opcode options.
- */
-
-void check_opcode(stack_t **stack, char *token, unsigned int line_number)
-
-instruction_t opcode_op[] = {
-	{“push”, push},
-	{“pall”, pul},
-	{“print”, pint},
-	{“pop”, pop},
-	{“swap”, swap},
-	{“add”, add},
-	{“nop”, nop},
-	{"sub", sub},
-	{"mul", mul}
-	{NULL, NULL};
-}
-
-void *push(stack_t **stack, unsigned int line_number);
+void check_opcode(stack_t **stack, char *token, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
 void pall(stck_t **stack, unsigned int line_number);
 void pint(stck_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);

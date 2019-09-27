@@ -6,7 +6,7 @@
  * Return: 1 is char or 0 if not.
  */
 
-int _isdigit(int c)
+int _isdigit(char c)
 {
 	if ((c >= 48) && (c < 58))
 	{
@@ -30,10 +30,11 @@ void sub(stack_t **stack, unsigned int line_number)
 	stack_t *temp;
 	int new_val;
 
-	temp = *stack;t 
+	temp = *stack; 
 	if (temp == NULL || (temp)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can’t sub, stack too short\n", line_number);
+		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
 	new_val = temp->next->n - temp->n;
@@ -60,6 +61,7 @@ void mul(stack_t **stack, unsigned int line_number)
 	if (temp == NULL || (temp)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can’t mul, stack too short\n", line_number);
+		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
 	new_val = temp->next->n * temp->n;
@@ -95,6 +97,7 @@ void add(stack_t **stack, unsigned int line_number)
 	if ((*stack)->next == NULL || (*stack) == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
 	else

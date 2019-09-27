@@ -23,6 +23,20 @@ typedef struct stack_s
 } stack_t;
 
 /**
+* struct glob - Structure for global variables
+* @token: token
+* @file: File name
+*/
+
+typedef struct glob
+{
+	char *token;
+	FILE *file;
+}glob_t;
+
+extern glob_t my_glob;
+
+/**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
@@ -37,7 +51,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void check_opcode(stack_t **stack, char *token, unsigned int line_number);
+void check_opcode(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -47,6 +61,7 @@ void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
-int _isdigit(int c);
+int _isdigit(char c);
+void to_free(stack_t **stack);
 
 #endif

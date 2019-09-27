@@ -1,4 +1,5 @@
 #include "monty.h"
+glob_t my_glob;
 
 /**
 *main - main
@@ -9,35 +10,42 @@
 
 int main(int argc, char *argv[])
 {
-	int fo;
-	char *token, *buffer;
+	char *buffer = NULL;
+	unsigned int line_number = 1;
+	size_t n;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: monty file%s\n", argv[1]);
+		free(stack);
 		exit(EXIT_FAILURE);
 	}
 
-	fo = fopen(argv[1], O_RDONLY);
-	if (fo == NULL)
+	my_glob.file = fopen(argv[1], "r");
+	if (my_glob.file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		to_free(&stack);
 		exit(EXIT_FAILURE);
 	}
 
-	while (getline(&buffer, &n, fo) != -1)
+	while (getline(&buffer, &n, my_glob.file) != -1)
 	{
-		token = strtok(buffer, "\n \t");
+		my_glob.token = strtok(buffer, "\n \t");
 
-		if (strcmp(token, "push") == 0)
+		if (strcmp(my_glob.token, "push") == 0)
 		{
-			token = strtok(NULL, "\n \t");
-			push(token, line_number)
+			my_glob.token = strtok(NULL, "\n \t");
+			push(&stack, line_number);
 		}
 		else
 		{
-			ckeck_opcode(token, line_number);
+			check_opcode(&stack, line_number);
 		}
-		token = strtok(NULL, "\n \t");
+		my_glob.token = strtok(NULL, "\n \t");
+		line_number++;
 	}
+	to_free(&stack);
+	return (EXIT_SUCCESS);
 }

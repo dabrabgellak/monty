@@ -4,11 +4,10 @@
  * check_opcode - Checks for the opcode needed.
  * @stack: Stack.
  * @line_number: line_number.
- * @token: Token.
  * Return: Nothing.
  */
 
-void check_opcode(stack_t **stack, char *token, unsigned int line_number)
+void check_opcode(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
@@ -27,13 +26,14 @@ void check_opcode(stack_t **stack, char *token, unsigned int line_number)
 
 	while (opcode_op[i].opcode != NULL)
 	{
-		if (strcmp(opcode_op[i].opcode, token) == 0)
+		if (strcmp(opcode_op[i].opcode, my_glob.token) == 0)
 		{
 			opcode_op[i].f(stack, line_number);
 			return;
 		}
 		i++;
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, my_glob.token);
+	to_free(stack);
 	exit(EXIT_FAILURE);
 }

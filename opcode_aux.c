@@ -6,7 +6,7 @@
  * Return: 1 is char or 0 if not.
  */
 
-int _isdigit(int c)
+int _isdigit(char c)
 {
 	if ((c >= 48) && (c < 58))
 	{
@@ -19,9 +19,9 @@ int _isdigit(int c)
 }
 
 /**
- * mul - multiplies the second top element of the stack with the top element of the stack.
+ * mul - multiplies the second top element of the stack with the top element.
  * @stack: Double linked list
- * @line_number:
+ * @line_number: line number.
  * Return: Nothing
  */
 
@@ -34,48 +34,75 @@ void mul(stack_t **stack, unsigned int line_number)
 
 	if (temp == NULL || *temp->next == NULL)
 	{
-		printf(“L%u: can’t mul, stack too short\n”, line_number);
+		fprintf(stderr, "L%u: can’t mul, stack too short\n", line_number);
+		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
-	New_val = temp->next->n * temp->n;
+	new_val = temp->next->n * temp->n;
 	temp->next->n = new_val;
 
 	pop(stack, line_number);
 }
 
+
 /**
- * sub - subtracts the top element of the stack from the second top element of the stack..
+ * sub - subtracts the top element of the stack from the second top element.
  * @stack: Double linked list
- * @line_number:
+ * @line_number: line number.
  * Return: Nothing
  */
 
 void sub(stack_t **stack, unsigned int line_number)
 {
-	Satck_t *temp;
+	stack_t *temp;
 	Int new_val;
 
 	if (temp == NULL || *temp->next == NULL)
 	{
-		printf(“L%u: can’t sub, stack too short\n”, line_number)
-		exit(EXIT_FAILURE)
+		fprintf(stderr, "L%u: can’t sub, stack too short\n", line_number);
+		to_free(stack);
+		exit(EXIT_FAILURE);
 	}
-	New_val = temp->next->n - temp->n;
+	new_val = temp->next->n - temp->n;
 	temp->next->n = new_val;
 
 	pop(stack, line_number);
 }
 
 /**
- * nop - doesn’t do anything.
- * @stack: Double linked list
- * @line_number:
+ * nop - doesn't do anything
+ * @stack: Double linked list.
+ * @line_number: line_number.
  * Return: Nothing
  */
 
-Void(stack_t **stack, unsigned int line_number)
+void nop(stack_t **stack, unsigned int line_number)
 {
-	void(line_number)
-	void(stack)
+	(void) line_number;
+	(void) stack;
 }
 
+/**
+ * add - adds the top two elements of the stack.
+ * @stack: Double linked list.
+ * @line_number: line_number.
+ * Return: Nothing
+ */
+
+void add(stack_t **stack, unsigned int line_number)
+{
+	int sum = 0;
+
+	if ((*stack)->next == NULL || (*stack) == NULL)
+	{
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		to_free(stack);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		sum += (*stack)->n;
+		(*stack)->next->n += sum;
+		pop(stack, line_number);
+	}
+}

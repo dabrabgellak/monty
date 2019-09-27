@@ -19,25 +19,26 @@ int _isdigit(char c)
 }
 
 /**
- * sub - substracts the top element of the stack from the second top element.
- * @stack: Double linked list.
- * @line_number: .
+ * mul - multiplies the second top element of the stack with the top element.
+ * @stack: Double linked list
+ * @line_number: line number.
  * Return: Nothing
  */
 
-void sub(stack_t **stack, unsigned int line_number)
+void mul(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
-	int new_val;
+	Stack_t *temp
+	int new_val
 
-	temp = *stack;
-	if (temp == NULL || (temp)->next == NULL)
+	temp = *stack
+
+	if (temp == NULL || *temp->next == NULL)
 	{
-		fprintf(stderr, "L%u: can’t sub, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can’t mul, stack too short\n", line_number);
 		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
-	new_val = temp->next->n - temp->n;
+	new_val = temp->next->n * temp->n;
 	temp->next->n = new_val;
 
 	pop(stack, line_number);
@@ -45,26 +46,24 @@ void sub(stack_t **stack, unsigned int line_number)
 
 
 /**
- * mul - multiply the second top element of the stack with the top element.
- * @stack: Double linked list.
- * @line_number: line_number.
+ * sub - subtracts the top element of the stack from the second top element.
+ * @stack: Double linked list
+ * @line_number: line number.
  * Return: Nothing
  */
 
-void mul(stack_t **stack, unsigned int line_number)
+void sub(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
-	int new_val;
+	Int new_val;
 
-	temp = *stack;
-
-	if (temp == NULL || (temp)->next == NULL)
+	if (temp == NULL || *temp->next == NULL)
 	{
-		fprintf(stderr, "L%u: can’t mul, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can’t sub, stack too short\n", line_number);
 		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
-	new_val = temp->next->n * temp->n;
+	new_val = temp->next->n - temp->n;
 	temp->next->n = new_val;
 
 	pop(stack, line_number);

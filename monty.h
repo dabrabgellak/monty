@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -26,12 +27,14 @@ typedef struct stack_s
 * struct glob - Structure for global variables
 * @token: token
 * @file: File name
+* @buffer: pointer
 */
 
 typedef struct glob
 {
 	char *token;
 	FILE *file;
+	char *buffer;
 } glob_t;
 
 extern glob_t my_glob;
@@ -61,7 +64,7 @@ void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
-int _isdigit(char c);
+int _isdigit(char *c);
 void to_free(stack_t **stack);
 
 #endif

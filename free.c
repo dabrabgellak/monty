@@ -16,8 +16,10 @@ void to_free(stack_t **stack)
 		*stack = (*stack)->next;
 		free(temp);
 	}
-	if (my_glob.token)
-		free(my_glob.token);
+	/*if (my_glob.token)*/
+		/*free(my_glob.token);*/
 	if (my_glob.file)
 		fclose(my_glob.file);
+	if (my_glob.buffer)
+		free(my_glob.buffer);
 }

@@ -6,16 +6,16 @@
  * Return: 1 is char or 0 if not.
  */
 
-int _isdigit(char c)
+int _isdigit(char *c)
 {
-	if ((c >= 48) && (c < 58))
-	{
-		return (1);
-	}
-	else
-	{
+	int i;
+
+	if (*c == '\n')
 		return (0);
-	}
+	for (i = 0; *(c + i) != '\n' && *(c + i); i++)
+		if ((isdigit(*(c + i)) > 0) && (*(c + i) != '-'))
+			return (1);
+	return (0);
 }
 
 /**

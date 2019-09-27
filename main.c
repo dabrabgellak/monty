@@ -10,15 +10,16 @@ glob_t my_glob;
 
 int main(int argc, char *argv[])
 {
-	char *buffer = NULL;
 	unsigned int line_number = 1;
 	size_t n;
 	stack_t *stack = NULL;
 
+	my_glob.buffer = NULL;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: monty file%s\n", argv[1]);
-		free(stack);
+		/*free(stack);*/
 		exit(EXIT_FAILURE);
 	}
 
@@ -26,13 +27,13 @@ int main(int argc, char *argv[])
 	if (my_glob.file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		to_free(&stack);
+		/*to_free(&stack);*/
 		exit(EXIT_FAILURE);
 	}
 
-	while (getline(&buffer, &n, my_glob.file) != -1)
+	while (getline(&my_glob.buffer, &n, my_glob.file) != -1)
 	{
-		my_glob.token = strtok(buffer, "\n \t");
+		my_glob.token = strtok(my_glob.buffer, "\n \t");
 
 		if (strcmp(my_glob.token, "push") == 0)
 		{
@@ -47,6 +48,5 @@ int main(int argc, char *argv[])
 		line_number++;
 	}
 	to_free(&stack);
-	free(buffer);
 	return (EXIT_SUCCESS);
 }

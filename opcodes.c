@@ -14,7 +14,6 @@ void push(stack_t **stack, unsigned int line_number)
 	char *arg;
 
 	arg = strtok(my_glob.token, " \t");
-	new_value = atoi(arg);
 
 	new_elem = malloc(sizeof(stack_t)); /* Save bytes for new element */
 	if (new_elem == NULL) /*In case malloc fails*/
@@ -25,13 +24,14 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	/** Adding an element */
-	if (_isdigit(new_value) == 1)
+	if (_isdigit(arg) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(new_elem);
 		to_free(stack);
 		exit(EXIT_FAILURE);
 	}
+	new_value = atoi(arg);
 	new_elem->n = new_value; /** or line_number instead of value*/
 	new_elem->prev = NULL;
 	new_elem->next = *stack;

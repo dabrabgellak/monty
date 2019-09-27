@@ -30,7 +30,7 @@ void sub(stack_t **stack, unsigned int line_number)
 	stack_t *temp;
 	int new_val;
 
-	temp = *stack; 
+	temp = *stack;
 	if (temp == NULL || (temp)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can’t sub, stack too short\n", line_number);

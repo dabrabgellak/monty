@@ -26,20 +26,20 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 	/** Adding an element */
 	if (_isdigit(new_value) == 1)
-        {
-                fprintf(stderr, "L%u: usage: push integer\n", line_number);
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(new_elem);
-                to_free(stack);
-                exit(EXIT_FAILURE);
-        }
+		to_free(stack);
+		exit(EXIT_FAILURE);
+	}
 	new_elem->n = new_value; /** or line_number instead of value*/
 	new_elem->prev = NULL;
 	new_elem->next = *stack;
 	/** Adding an element */
-        if (*stack != NULL)
-        {
-                (*stack)->prev = new_elem;
-        }
+	if (*stack != NULL)
+	{
+		(*stack)->prev = new_elem;
+	}
 	*stack = new_elem;
 }
 

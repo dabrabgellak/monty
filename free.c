@@ -3,7 +3,7 @@
 /**
  * to_free - Frees the leaks.
  * @stack: Stack.
- * Return: Nothing. 
+ * Return: Nothing.
  */
 
 void to_free(stack_t **stack)

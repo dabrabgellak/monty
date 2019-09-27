@@ -32,7 +32,7 @@ typedef struct glob
 {
 	char *token;
 	FILE *file;
-}glob_t;
+} glob_t;
 
 extern glob_t my_glob;
 

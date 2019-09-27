@@ -47,5 +47,6 @@ int main(int argc, char *argv[])
 		line_number++;
 	}
 	to_free(&stack);
+	free(buffer);
 	return (EXIT_SUCCESS);
 }

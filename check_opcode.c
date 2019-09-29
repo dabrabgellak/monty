@@ -21,6 +21,9 @@ void check_opcode(stack_t **stack, unsigned int line_number)
 		{"nop", nop},
 		{"sub", sub},
 		{"mul", mul},
+		{"div", _div},
+		{"pstr", pstr},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 
